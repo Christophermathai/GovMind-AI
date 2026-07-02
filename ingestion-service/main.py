@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+load_dotenv("../.env")
+
 from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException
 from pydantic import BaseModel
 from supabase import create_client, Client
