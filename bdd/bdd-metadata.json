@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "last_refreshed": "2026-07-02",
+  "surfaces": [
+    {
+      "id": "001",
+      "name": "Government Knowledge Engine",
+      "feature_prefix": "GKE",
+      "status": "current",
+      "feature_files": [
+        "bdd/001-government-knowledge-engine/GKE-01-document-ingestion.feature",
+        "bdd/001-government-knowledge-engine/GKE-02-query-embedding.feature",
+        "bdd/001-government-knowledge-engine/GKE-03-retrieval-api.feature"
+      ],
+      "scenario_counts": {
+        "GKE-01-document-ingestion": 8,
+        "GKE-02-query-embedding": 3,
+        "GKE-03-retrieval-api": 6
+      },
+      "total_scenarios": 17,
+      "source_refs": [
+        "ingestion-service/main.py",
+        "ingestion-service/processor.py",
+        "app/api/retrieve/route.ts",
+        "supabase/migrations/20240101000000_init_knowledge_engine.sql"
+      ],
+      "spec_ref": "project-delivery/features/001-government-knowledge-engine/spec.md",
+      "audit_ref": "project-delivery/features/001-government-knowledge-engine/audit.md"
+    }
+  ]
+}
