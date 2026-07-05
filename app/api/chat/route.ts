@@ -1,4 +1,4 @@
-import { openai } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { streamText, createUIMessageStreamResponse, UI_MESSAGE_STREAM_HEADERS, convertToModelMessages } from 'ai';
 import { buildCitizenSystemPrompt } from '@/lib/prompts/citizenSystemPrompt';
 
@@ -64,8 +64,16 @@ export async function POST(req: Request) {
     // ── Convert UIMessages → ModelMessages and stream ────────────────────────
     const modelMessages = await convertToModelMessages(messages as Parameters<typeof convertToModelMessages>[0]);
 
+    // Ollama exposes an OpenAI-compatible API at /v1 — no key required.
+    // Uses @ai-sdk/openai's createOpenAI pointed at Ollama for full AI SDK v6 compatibility.
+    // Set OLLAMA_BASE_URL in .env to override (default: http://localhost:11434)
+    const ollamaCompat = createOpenAI({
+      baseURL: (process.env.OLLAMA_BASE_URL ?? 'http://localhost:11434') + '/v1',
+      apiKey: 'ollama', // Ollama ignores the key but the SDK requires a non-empty string
+    });
+
     const result = streamText({
-      model: openai('gpt-4o-mini'),
+      model: ollamaCompat('phi4-mini'),
       system: systemPrompt,
       messages: modelMessages,
       maxOutputTokens: 1024,
