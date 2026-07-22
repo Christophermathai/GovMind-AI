@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-load_dotenv("../.env")
+# Resolve path relative to this script's directory
+load_dotenv(os.path.join(os.path.dirname(__file__), "../.env"))
 
 from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException
 from pydantic import BaseModel

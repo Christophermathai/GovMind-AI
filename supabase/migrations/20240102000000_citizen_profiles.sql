@@ -29,6 +29,7 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
+DROP TRIGGER IF EXISTS update_citizen_profiles_updated_at ON citizen_profiles;
 CREATE TRIGGER update_citizen_profiles_updated_at
   BEFORE UPDATE ON citizen_profiles
   FOR EACH ROW

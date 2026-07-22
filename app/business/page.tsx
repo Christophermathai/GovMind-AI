@@ -1,17 +1,13 @@
 import { ComplianceChecklist } from "@/components/business/ComplianceChecklist";
 import { ComplianceChat } from "@/components/business/ComplianceChat";
-import { createClient } from "@supabase/supabase-js";
+import { supabaseServer } from "@/lib/supabase/server";
 
 // Force dynamic rendering since we fetch from DB
 export const dynamic = 'force-dynamic';
 
 export default async function BusinessCompliancePage() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost:54321';
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'dummy';
-  const supabase = createClient(supabaseUrl, supabaseKey);
-
-  // Fetch all tasks directly
-  const { data: tasks, error } = await supabase
+  // Fetch all tasks directly using the server client
+  const { data: tasks, error } = await supabaseServer
     .from('compliance_tasks')
     .select('*')
     .order('created_at', { ascending: false });
