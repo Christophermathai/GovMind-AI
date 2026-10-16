@@ -1,0 +1,15 @@
+{
+  "include": [
+    "ingestion-service"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/.venv",
+    "**/.next"
+  ],
+  "venvPath": ".",
+  "venv": ".venv",
+  "extraPaths": [
+    "ingestion-service"
+  ]
+}

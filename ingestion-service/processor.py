@@ -1,6 +1,6 @@
 import io
 from pypdf import PdfReader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from fastembed import TextEmbedding
 
 # Initialize embedding model (downloads automatically on first run)

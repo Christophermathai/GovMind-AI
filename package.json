@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "app": "tsx scripts/start-app.ts",
     "migrate": "tsx scripts/migrate.ts",
     "migrate:dry-run": "tsx scripts/migrate.ts --dry-run"
   },
@@ -14,6 +15,7 @@
     "@ai-sdk/openai": "^3.0.80",
     "@ai-sdk/react": "^3.0.221",
     "@hookform/resolvers": "^5.4.0",
+    "@next/swc-win32-x64-msvc": "^16.2.9",
     "@supabase/supabase-js": "^2.109.0",
     "ai": "^6.0.219",
     "clsx": "^2.1.1",

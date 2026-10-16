@@ -28,16 +28,17 @@ def health_check():
 
 @app.post("/ingest")
 async def ingest_document(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
-    if not file.filename.endswith(".pdf"):
+    filename = file.filename or "uploaded_document.pdf"
+    if not filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are supported")
     
     # Read file content into memory
     content = await file.read()
     
     # Process the document in the background to avoid blocking the HTTP response
-    background_tasks.add_task(process_document, content, file.filename, supabase)
+    background_tasks.add_task(process_document, content, filename, supabase)
     
-    return {"message": "Document accepted for processing", "filename": file.filename}
+    return {"message": "Document accepted for processing", "filename": filename}
 
 @app.post("/embed-query")
 def embed_query(req: QueryRequest):

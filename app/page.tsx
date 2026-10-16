@@ -1,3 +1,5 @@
+"use client";
+
 import { Omnibar } from "@/components/ui/Omnibar";
 import { BentoCard } from "@/components/ui/BentoCard";
 import { AlertTriangle, FileText } from "lucide-react";
